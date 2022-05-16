@@ -33,7 +33,8 @@ const theme = createTheme({
   }
 })
 
-export default function TourCard() {
+export default function TourCard({tour}) {
+  console.log("tour", tour);
   return (
    
 <Grid item xs={3}>
@@ -41,8 +42,8 @@ export default function TourCard() {
 
     <Paper elivation="4" square>
 
-      <img className='img' varient='subtitle1' src="https://digital.ihg.com/is/image/ihg/crowne-plaza-niagara-falls-3114408472-3x2" alt=''/>
-      <Box paddingX={1}>  <Typography>Immerse into the false</Typography>
+      <img className='img' varient='subtitle1' src={tour.image} alt=''/>
+      <Box paddingX={1}>  <Typography>{tour.name}</Typography>
       
       
       <Box sx ={{
@@ -51,7 +52,7 @@ export default function TourCard() {
         
       }}>
           <AccessTime sx={{fontSize: "12px"}}/>
-          <Typography marginLeft={0.5} variant='body2' component="p"> 5 hours</Typography>
+          <Typography marginLeft={0.5} variant='body2' component="p"> {tour.duration} hours</Typography>
         </Box>
         <Box marginTop={3} sx ={{
           display:'flex',
@@ -59,14 +60,14 @@ export default function TourCard() {
           
           
         }}>
-          <Rating name='read-only' value={4.75} precision={0.1} size="small" readOnly/>
-          <Typography marginLeft={0.5} variant='body2' component="p">4.5</Typography>
-          <Typography marginLeft={0.5} variant='body2' component="p">(655 reviews)</Typography>
+          <Rating name='read-only' value={tour.rating} precision={0.1} size="small" readOnly/>
+          <Typography marginLeft={0.5} variant='body2' component="p">{tour.rating}</Typography>
+          <Typography marginLeft={0.5} variant='body2' component="p">({tour.numberOfReviews})</Typography>
 
         </Box>
         <Box>
 
-          <Typography marginTop={0} variant='h6' component="h3">From $150</Typography>
+          <Typography marginTop={0} variant='h6' component="h3">From ${tour.price}</Typography>
         </Box>
       </Box>
     </Paper>
